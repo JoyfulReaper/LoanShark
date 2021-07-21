@@ -36,8 +36,23 @@ main>.container {
     padding: 60px 15px 0;
 }
 
+.dark {
+    color: var(--dark-color);
+}
+
+.large {
+    color: var(--dark-color);
+    font-size: 3.5em;
+    font-weight: bolder;
+}
+
 .logoFont {
     font-family: 'Berkshire Swash', cursive;
+}
+
+.tableHeader {
+    background-color: #1c3bc7;
+    color: white;
 }
 
 .bsicon{
