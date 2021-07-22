@@ -5,12 +5,12 @@ function getInput() {
     let term = document.getElementById("term").value;
     let rate = document.getElementById("rate").value;
 
-    principal = parseInt(principal);
-    term = parseInt(term);
-    rate = parseInt(rate);
+    principal = parseFloat(principal);
+    term = parseFloat(term);
+    rate = parseFloat(rate);
 
-    if(!Number.isInteger(principal) || !Number.isInteger(term) || !Number.isInteger(rate)) {
-        alert("Please enter valid integers for the principal, term, and rate.");
+    if(isNaN(principal) || isNaN(term) || isNaN(rate)) {
+        alert("Please enter valid numbers for the principal, term, and rate.");
         return;
     }
 
