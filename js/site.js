@@ -21,18 +21,18 @@ function getInput() {
 
 function calculateLoanData(principal, term, rate) {
 
-    let monthly = (principal * (rate / 1200) / (1 - (1 + rate/1200) ** -60)).toFixed(2);
+    let monthly = principal * (rate / 1200) / (1 - (1 + rate/1200) ** -60);
 
     let loanObj = {
         Principal : principal,
         Term : term,
         Rate : rate,
         Monthly : monthly,
-        TotalInterest: 0,
         Payments: []
     };
 
     let balance = principal;
+    loanObj.TotalInterest = 0;
     for(let i = 0; i < term; i++) {
         let interest = principal * rate / 1200;
         let payment = monthly - interest;
@@ -44,8 +44,8 @@ function calculateLoanData(principal, term, rate) {
 
         let current = {
             Interest : interest,
-            Payment : payment,
             InterestPaid: interestPaid,
+            PrincipalPaid: payment,
             Balance : balance
         }
 
@@ -67,9 +67,12 @@ function displayResults(loanObj) {
         let tableRow = document.importNode(templateRow.content, true);
 
         let rowCols = tableRow.querySelectorAll("td");
-        rowCols[0] = 1;
-        rowCols[1] = 2;
-        rowCols[2] = 3;
+        rowCols[0].textContent = i + 1;
+        rowCols[1].textContent = loanObj.Monthly.toFixed(2);
+        rowCols[2].textContent = loanObj.Payments[i].PrincipalPaid.toFixed(2);
+        rowCols[3].textContent = loanObj.Payments[i].Interest.toFixed(2);
+        rowCols[4].textContent = loanObj.Payments[i].InterestPaid.toFixed(2);
+        rowCols[5].textContent = loanObj.Payments[i].Balance.toFixed(2);
 
         tableBody.appendChild(tableRow);
     }
@@ -81,8 +84,8 @@ function displayResults(loanObj) {
 
     document.getElementById("payment").innerHTML = `${formatter.format(loanObj.Monthly)}`;
     document.getElementById("totalPrincipal").innerHTML = `${formatter.format(loanObj.Principal)}`;
-    document.getElementById("interest").innerHTML = `${formatter.format((loanObj.TotalInterest).toFixed(2))}`;
-    document.getElementById("total").innerHTML = `<strong>${formatter.format((loanObj.Principal + loanObj.TotalInterest).toFixed(2))}</strong>`;
+    document.getElementById("interest").innerHTML = `${formatter.format((loanObj.TotalInterest))}`;
+    document.getElementById("total").innerHTML = `<strong>${formatter.format((loanObj.Principal + loanObj.TotalInterest))}</strong>`;
 
     document.getElementById("outputPane").classList.remove("invisible");
 }
