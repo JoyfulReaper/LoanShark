@@ -46,7 +46,7 @@
                         <a class="nav-link" href="./code.html">The Code</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="https://github.com/JoyfulReaper">Git Repo</a>
+                        <a class="nav-link" target="_blank" href="https://github.com/JoyfulReaper/LoanShark">Git Repo</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" target="_blank" href="https://kgivler.com">About</a>
@@ -62,18 +62,18 @@
             <h1 class="logoFont">Loan Calculator</h1>
             <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col">
-                    <form class="row bg-light m-1 pt-2">
+                    <form class="row bg-light m-1 pt-2" action="#" method="post">
                         <div class="col-12">
                             <label class="form-label">Loan Amount:</label>
-                            <input id="amount" type="number" type="text" class="form-control" placeholder="Amount" required>
+                            <input id="principal" type="number" class="form-control" placeholder="Amount" required>
                         </div>
                         <div class="col-12">
                             <label class="form-label">Payments:</label>
-                            <input id="payment" type="number" type="text" class="form-control" placeholder="Payments" required>
+                            <input id="term" type="number" class="form-control" placeholder="Payments" required>
                         </div>
                         <div class="col-12">
                             <label class="form-label">Rate</label>
-                            <input id="rate" type="number" type="text" class="form-control" placeholder="Rate" required>
+                            <input id="rate" type="number" class="form-control" placeholder="Rate" required>
                         </div>
                         <div class="col-12 d-flex justify-content-end p-3">
                             <button id="btnSubmit" type="button" class="btn btn-outline-primary">Calculate</button>
@@ -81,7 +81,7 @@
                     </form>
                 </div>
 
-                <div class="col">
+                <div id="outputPane" class="col invisible">
                     <div class="row">
                         <div class="col-12 col-lg-9 d-flex justify-content-end">
                             <em><h5 class="dark fw-normal mb-3 mt-3">Your Monthly Payments</h5></em>
@@ -89,14 +89,14 @@
                     </div>
                     <div class="row">
                          <div class="col-12 col-lg-9 d-flex justify-content-end">
-                            <span class="large dark mb-3">$269.53</span>
+                            <span id="payment" class="large dark mb-3"></span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12 col-lg-9">
-                            Total Principal <span id="principal" class="float-end me-4">$15,000.00</span><br>
-                            Total Interest  <span id="interest" class="float-end me-4">$1,171.82</span><br>
-                            Total Cost      <span id="total" class="float-end me-4">$16,171.82</span><br>
+                            Total Principal <span id="totalPrincipal" class="float-end me-4"></span><br>
+                            Total Interest  <span id="interest" class="float-end me-4"></span><br>
+                            Total Cost      <span id="total" class="float-end me-4"></span><br>
                         </div>
                     </div>
                 </div>
@@ -143,7 +143,7 @@
                     <div class="row">
                         <div class="col social"><a href="https://www.linkedin.com/in/kyle-givler/" target="_blank"><i
                                     class="fab fa-linkedin fa-2x"></i></a></div>
-                        <div class="col social"><a href="https://github.com/joyfulreaper" target="_blank"><i
+                        <div class="col social"><a href="https://github.com/JoyfulReaper" target="_blank"><i
                                     class="fab fa-github fa-2x"></i></a></div>
                     </div>
                 </div>
@@ -170,5 +170,8 @@
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
     </script>
     <script src="./js/site.js"></script>
+    <script>
+        document.getElementById("btnSubmit").addEventListener("click", getInput);
+    </script>
 </body>
 </html>
