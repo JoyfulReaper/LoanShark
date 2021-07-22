@@ -21,7 +21,7 @@ function getInput() {
 
 function calculateLoanData(principal, term, rate) {
 
-    let monthly = principal * (rate / 1200) / (1 - (1 + rate/1200) ** -60);
+    let monthly = principal * (rate / 1200) / (1 - (1 + rate/1200) ** -term);
 
     let loanObj = {
         Principal : principal,
